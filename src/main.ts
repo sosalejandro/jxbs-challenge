@@ -6,7 +6,7 @@ import { RateLimitGuard } from './common/rate-limit.guard';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
-  app.useGlobalGuards(new RateLimitGuard());
+  app.useGlobalGuards(app.get(RateLimitGuard));
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();
