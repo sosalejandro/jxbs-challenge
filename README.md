@@ -25,36 +25,89 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Project setup
+# JXBS Challenge - Notification Service API
 
-```bash
-$ yarn install
+## Requirements
+- Docker
+- Node.js v20+
+- 2 GB RAM (for containers)
+- Yarn (preferred) or npm
+
+## Environment Variables
+Create a `.env` file in the project root with the following content:
+
+```env
+# PostgreSQL
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5432
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_DB=notifications
+
+# Redis
+REDIS_HOST=localhost
+REDIS_PORT=6379
 ```
 
-## Compile and run the project
+## Setup
 
+1. **Start dependencies (PostgreSQL & Redis):**
+   ```bash
+   docker-compose up -d
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   yarn install
+   # or
+   npm install
+   ```
+
+3. **Build the application:**
+   ```bash
+   yarn build
+   # or
+   npm run build
+   ```
+
+4. **Run database migrations:**
+   ```bash
+   npx typeorm migration:run -d dist/data-source.js
+   ```
+
+5. **Start the application:**
+   ```bash
+   yarn start:dev
+   # or
+   npm run start:dev
+   ```
+
+## Running Tests
+
+- **Unit & integration tests:**
+  ```bash
+  yarn test
+  # or
+  npm test
+  ```
+
+- **E2E tests:**
+  ```bash
+  yarn test:e2e
+  # or
+  npm run test:e2e
+  ```
+
+- **E2E tests with open handle detection:**
+  ```bash
+  yarn test:e2e --detectOpenHandles
+  ```
+
+## Clean Up
+
+To stop and remove containers and volumes:
 ```bash
-# development
-$ yarn run start
-
-# watch mode
-$ yarn run start:dev
-
-# production mode
-$ yarn run start:prod
-```
-
-## Run tests
-
-```bash
-# unit tests
-$ yarn run test
-
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
+docker-compose down -v
 ```
 
 ## Deployment
