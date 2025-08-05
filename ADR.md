@@ -18,7 +18,12 @@ This project is a notification service API built with NestJS, using PostgreSQL a
 - **Decision:** The `rate-limiter-flexible` package is used to implement per-user rate limiting.
 - **Rationale:** This package allows for flexible, distributed rate limiting strategies, supporting individual user limits and integration with Redis for persistence.
 
-### 4. Omitted Features (Due to Time Constraints)
+
+### 4. Authentication Service: Not Implemented
+- **Observation:** The need for a dedicated authentication service (beyond basic JWT guards and decorators) was not foreseen at the start of the project, and such a service was not implemented.
+- **Rationale:** Early focus was placed on core notification functionality and end-to-end (E2E) testing to validate the solution. As the project evolved, the importance of a more robust authentication module became clear for production-readiness and extensibility. Implementing a full authentication service remains an area for future improvement.
+
+### 5. Omitted Features (Due to Time Constraints)
 The following features were considered but not implemented due to time constraints:
 - **Bulk notifications:** Sending to multiple users in a single request.
 - **Per-user rate limiting:** (Basic support implemented, but not advanced strategies.)
