@@ -49,6 +49,7 @@ REDIS_HOST=localhost
 REDIS_PORT=6379
 ```
 
+
 ## Setup
 
 1. **Start dependencies (PostgreSQL & Redis):**
@@ -75,12 +76,20 @@ REDIS_PORT=6379
    npx typeorm migration:run -d dist/data-source.js
    ```
 
-5. **Start the application:**
+5. **Seed the database with a test user (for local testing):**
+   You can insert a user directly using psql or a DB tool. Example:
+   ```bash
+   docker exec -it <postgres_container_name> psql -U postgres -d notifications -c "INSERT INTO \"user\" (id, email, role, \"notificationPreferences\") VALUES ('b3b8c1e2-8c2a-4e2a-9b2a-1c2a3b4c5d6e', 'testuser@example.com', 'user', '{"email":true,"in-app":true}');"
+   ```
+   Replace `<postgres_container_name>` with your actual container name (see `docker ps`).
+
+6. **Start the application:**
    ```bash
    yarn start:dev
    # or
    npm run start:dev
    ```
+
 
 ## Running Tests
 
